@@ -1,0 +1,30 @@
+<h1>1번 문제: aa 보이니?</h1>
+
+<h1>2번 문제</h1>
+<p>{{question_list}}</p>
+
+<h1>3번 문제</h1>
+
+{% for question in question_list %}
+    <p>{{question}}</p>
+    <p>{{question.id}}</p>
+    <p>{{question.question_text}}</p>
+    <P>______________________</P>
+
+{% endfor %}
+
+<h1>4번 문제</h1>
+
+{% for choice in choice_list %}
+    <p>{{choice.choice_text}}</p>
+{% endfor %}
+
+<h1>5번 문제</h1>
+
+{% for question in question_list %}
+    <p>{{question}}</p>
+    {% for choice in question.choice_set.all %}
+    <p>{{choice.choice_text}}</p>
+    {% endfor %}
+{% endfor %}
+
