@@ -6,6 +6,7 @@ from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
+from django.urls import reverse_lazy
 
 # def index(request):
 # 	latest_question_list = Question.objects.order_by("-pub_date")[:5]
@@ -72,6 +73,27 @@ def vote(request, question_id):
         selected_choice.votes = F("votes") + 1
         selected_choice.save()
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+
+
+# CRUD - Create
+class QuestionCreateView(generic.CreateView):
+    model = Question
+    fields = ["question_text", "pub_date"]
+    template_name = "polls/question_form.html"
+    success_url = reverse_lazy("polls:index")
+
+class QuestionUpdateView(generic.UpdateView):
+    model = Question
+    fields = ["question_text", "pub_date"]
+    template_name = "polls/question_form.html"
+    success_url = reverse_lazy("polls:index")
+
+class QuestionDeleteView(generic.DeleteView):
+    model = Question
+    template_name = "polls/question_confirm_delete.html"
+    success_url = reverse_lazy("polls:index")
+ 
+
 
 # def aa(request):
 # 	# 1. 모델에서 데이터를 모두 불러오기

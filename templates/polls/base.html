@@ -2,23 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="with=device-width, initial-scale=1.0">
-    <title>{% block title %}Django first{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'polls/index.css' %}">
-</head>
+{% include "polls/head.html" %}
 <body>
     {% include "polls/header.html" %}
-
     <main>
         {% block content %}
         <!-- 이 사이에 컨텐츠가 들어갑니다. -->
         {% endblock %}
     </main>
-
     {% include "polls/footer.html" %}
-
 </body>
 </html>
